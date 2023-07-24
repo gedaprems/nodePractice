@@ -1,5 +1,5 @@
 const fs = require('fs')
-
+const chalk = require('chalk')
 
 // Function for adding notes
 
@@ -17,7 +17,7 @@ const addNotes = function(title, body){
 
     if(flag){
         // Printing title taken! 
-        console.log("Title taken!")
+        console.log(chalk.red.inverse("Title taken!"))
     }else{
         // Pushing data to the notes.json
         notes.push({
@@ -25,8 +25,31 @@ const addNotes = function(title, body){
             body: body
         })
         saveNotes(notes)
-        console.log("Note added!")
+        console.log(chalk.green.inverse("Note added!"))
     }  
+}
+
+// Function to Remove a Note
+
+const removeNote = function(title){
+
+    const notes = loadNotes()
+    let flag = false
+    
+    for(let idx = 0; idx<notes.length; idx++){
+        if(notes[idx].title===title){
+            notes.splice(idx,1)
+            flag = true
+            break
+        }
+    }
+
+    if(flag){
+        saveNotes(notes)
+        console.log(chalk.green.inverse("Note deleted successfully"))
+    }else{
+        console.log(chalk.red.inverse("Title not present!"))
+    }
 }
 
 // Helper function to load Notes 
@@ -49,6 +72,8 @@ const saveNotes = function(notes){
     fs.writeFileSync('./notes.json',notesJSON)
 }
 
+
+
 // Function for getting Notes 
 
 const getNotes = function(){
@@ -57,5 +82,6 @@ const getNotes = function(){
 
 module.exports = {
     addNotes: addNotes,
-    getNotes: getNotes
+    getNotes: getNotes,
+    removeNote : removeNote
 }
