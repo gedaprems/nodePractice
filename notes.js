@@ -52,6 +52,36 @@ const removeNote = function(title){
     }
 }
 
+// List notes 
+
+const listNotes = function(){
+    const notes = loadNotes()
+    for(let idx=0; idx<notes.length; idx++){
+        console.log(notes[idx].title)
+    }
+}
+
+
+// Function for getting Note
+
+const getNotes = function(title){
+    const notes = loadNotes()
+    let flag = false
+    for(let idx=0; idx<notes.length; idx++){
+        if(notes[idx].title==title){
+            console.log(notes[idx].title+" : "+ notes[idx].body)
+            flag = true
+            break
+        }
+    }
+    if(!flag){
+        console.log(title+" not found!")
+    }
+    
+    // return "Your Notes..."
+}
+
+
 // Helper function to load Notes 
 
 const loadNotes = function(){
@@ -74,14 +104,10 @@ const saveNotes = function(notes){
 
 
 
-// Function for getting Notes 
-
-const getNotes = function(){
-    return "Your Notes..."
-}
 
 module.exports = {
     addNotes: addNotes,
     getNotes: getNotes,
-    removeNote : removeNote
+    removeNote : removeNote,
+    listNotes: listNotes
 }
