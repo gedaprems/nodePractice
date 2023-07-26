@@ -74,13 +74,13 @@ const getNotes = function(title){
     let flag = false
     for(let idx=0; idx<notes.length; idx++){
         if(notes[idx].title==title){
-            console.log(notes[idx].title+" : "+ notes[idx].body)
+            console.log(chalk.green(notes[idx].title)+" : "+ notes[idx].body)
             flag = true
             break
         }
     }
     if(!flag){
-        console.log(title+" not found!")
+        console.log(chalk.red.inverse(title+" not found!"))
     }
     
     // return "Your Notes..."
