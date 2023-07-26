@@ -56,9 +56,14 @@ const removeNote = function(title){
 
 const listNotes = function(){
     const notes = loadNotes()
-    for(let idx=0; idx<notes.length; idx++){
-        console.log(notes[idx].title)
-    }
+    console.log(chalk.red.inverse("Your notes: "))
+    //Added forEach() method: 
+    notes.forEach((note)=>{
+        console.log(note.title)
+    })
+    // for(let idx=0; idx<notes.length; idx++){
+    //     console.log(notes[idx].title)
+    // }
 }
 
 
